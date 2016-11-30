@@ -6,6 +6,13 @@ class RestaurantsController < ApplicationController
     render("restaurants/index.html.erb")
   end
 
+def home
+
+  @q = Restaurant.ransack(params[:q])
+  @restaurants = @q.result(:distinct => true).includes(:user, :questions).page(params[:page]).per(10)
+  
+end
+
   def show
     @question = Question.new
     @restaurant = Restaurant.find(params[:id])
