@@ -10,7 +10,13 @@ def home
 
   @q = Restaurant.ransack(params[:q])
   @restaurants = @q.result(:distinct => true).includes(:user, :questions).page(params[:page]).per(10)
+
+end
+
+def survey
+  @restaurant = Restaurant.find(params[:id])
   
+
 end
 
   def show

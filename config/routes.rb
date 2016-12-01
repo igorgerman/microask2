@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
   root :to => "restaurants#home"
 
 
@@ -53,6 +54,9 @@ Rails.application.routes.draw do
 
   # DELETE
   get "/delete_restaurant/:id", :controller => "restaurants", :action => "destroy"
+
+  #sureveys
+  get "/restaurants/:id/survey", :controller => "restaurants", :action => "survey"
   #------------------------------
 
   devise_for :users
