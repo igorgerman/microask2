@@ -2,11 +2,39 @@ Earn some cash by completing this survey.
 
 <br>
 
+
+
 <% @restaurant.questions.each do |survey|%>
-  <h3> <%= survey.name %> </h3>
-  <p> <%= survey.body %> </p>
-  <ul>
-    <li> <%= survey.option_1 %> </l1>
-    <li> <%= survey.option_2 %> </l1>
+
+<form action = "/create_response" method = "post">
+
+
+  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+  <!-- Label and input for user_id -->
+  <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+    <input type="hidden" name="question_id" value="<%= survey.id %>">
+
+<div class="radio">
+  <label>
+    <input type="radio" name="selection" id="selection" value="<%= survey.option_1 %>">
+    <%= survey.option_1 %>
+  </label>
+</div>
+
+
+<div class="radio">
+  <label>
+    <input type="radio" name="selection" id="selection" value="<%= survey.option_2 %>" >
+    <%= survey.option_2 %>
+  </label>
+</div>
+
+<button class="btn btn-success">
+Submit that Ish
+</button>
+
+</form>
 
 <%end%>
