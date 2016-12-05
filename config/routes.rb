@@ -55,8 +55,10 @@ Rails.application.routes.draw do
   # DELETE
   get "/delete_restaurant/:id", :controller => "restaurants", :action => "destroy"
 
-  #sureveys
+  #surveys
   get "/restaurants/:id/survey", :controller => "restaurants", :action => "survey"
+  get "/reward", :controller => "restaurants", :action => "reward"
+
   #------------------------------
 
   devise_for :users

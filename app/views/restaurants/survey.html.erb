@@ -6,6 +6,8 @@ Earn some cash by completing this survey.
 
 <% @restaurant.questions.each do |survey|%>
 
+<%= survey.body %>
+
 <form action = "/create_response" method = "post">
 
 

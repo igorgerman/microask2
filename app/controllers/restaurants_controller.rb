@@ -15,8 +15,11 @@ end
 
 def survey
   @restaurant = Restaurant.find(params[:id])
-  
 
+end
+
+def reward
+  
 end
 
   def show

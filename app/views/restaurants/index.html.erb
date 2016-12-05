@@ -3,7 +3,7 @@
     Restaurants
     <a href="/restaurants/new" class="btn btn-lg btn-success">New Restaurant</a>
   </h1>
-</div><div class="row mb-1">
+<!-- </div><div class="row mb-1">
   <div class="col-md-12">
     <%= search_form_for @q, :class => "collapse", :id => "restaurants_filters" do |f| %>
       <p class="lead">Narrow results:</p>
@@ -76,7 +76,7 @@
       Show Filters
     </a>
   </div>
-</div>
+</div> -->
 
 <div class="row">
   <div class="col-md-12">
@@ -88,25 +88,33 @@
         <th>Actions</th>
       </tr>
 
+
+
       <% @restaurants.each do |restaurant| %>
+
+      <%if  restaurant.user.id == current_user.id %>
+
       <tr>
         <td><%= restaurant.name %></td>
         <td><%= restaurant.address %></td>
-        <td>
-          <% if restaurant.user.present? %>
-            <a href="/users/<%= restaurant.user.id %>">
-              <%= restaurant.user.email %>
-            </a>
-          <% end %>
-        </td>
+        <td><a href="/users/<%= restaurant.user.id %>"> <%= restaurant.user.email %> </a></td>
+
         <td>
           <a href="/restaurants/<%= restaurant.id %>" class="btn btn-primary">Show</a>
           <a href="/restaurants/<%= restaurant.id %>/edit" class="btn btn-warning">Edit</a>
           <a href="/delete_restaurant/<%= restaurant.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
-      </tr>
+
+        <%else%>
       <% end %>
+      </tr>
+
+  <%end%>
+
     </table>
+
     <%= paginate @restaurants, theme: 'twitter-bootstrap-4' %>
   </div>
+
+
 </div>

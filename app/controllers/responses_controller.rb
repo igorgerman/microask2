@@ -38,14 +38,14 @@ class ResponsesController < ApplicationController
     save_status = @response.save
 
     if save_status == true
-      referer = URI(request.referer).path
-
-      case referer
-      when "/responses/new", "/create_response"
-        redirect_to("/responses")
-      else
-        redirect_back(:fallback_location => "/", :notice => "Response created successfully.")
-      end
+      # referer = URI(request.referer).path
+      #
+      # case referer
+      # when "/responses/new", "/create_response"
+        redirect_to("/reward")
+      # else
+      #   redirect_back(:fallback_location => "/", :notice => "Response created successfully.")
+      # # end
     else
       render("responses/new.html.erb")
     end
