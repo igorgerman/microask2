@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Add Question</h3>
+  <h2>Get information from your patrons. Ask them a question while they wait in line</h2>
 </div>
 
 <div class="row">
@@ -18,19 +18,31 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          <h3>Give this Survey a Keyword</h3>
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @question.name %>">
+      </div>
+
       <!-- Label and input for body -->
       <div class="form-group">
         <label for="body" class="control-label">
-          Body
+          <h3>What question do you want to ask patrons?</h3>
         </label>
 
         <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @question.body %></textarea>
       </div>
 
+
+      <h3>Keep it simple. Give them two options to choose from.</h3>
+
       <!-- Label and input for option_1 -->
       <div class="form-group">
         <label for="option_1" class="control-label">
-          Option 1
+          <h3></h3>
         </label>
 
         <input type="text" id="option_1" name="option_1" placeholder="Option 1" class="form-control" value="<%= @question.option_1 %>">
@@ -39,20 +51,13 @@
       <!-- Label and input for option_2 -->
       <div class="form-group">
         <label for="option_2" class="control-label">
-          Option 2
+          <h3> </h3>
         </label>
 
         <input type="text" id="option_2" name="option_2" placeholder="Option 2" class="form-control" value="<%= @question.option_2 %>">
       </div>
 
-      <!-- Label and input for name -->
-      <div class="form-group">
-        <label for="name" class="control-label">
-          Name
-        </label>
 
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @question.name %>">
-      </div>
 
       <!-- Label and input for restaurant_id -->
       <div class="form-group">
@@ -64,7 +69,7 @@
       </div>
 
       <button class="btn btn-success">
-        Create Question
+        Create Survey
       </button>
       or
       <a href="/questions">Cancel</a>
