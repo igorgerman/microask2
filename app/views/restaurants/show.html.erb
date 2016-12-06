@@ -2,106 +2,116 @@
   <h3> <%= @restaurant.name %> <small> Restaurant Page</small></h3>
 </div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-5">
+          <h4>Add a Survey to this Restaurant</h4>
 
-<h4>Add a Survey to this Restaurant</h4>
+          <div>
+            <div class="col-md-12">
+              <form action="/create_question" method="post">
+                <!-- Hidden input for authenticity token to protect from forgery -->
+                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-<div>
-  <div class="col-md-12">
-    <form action="/create_question" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                <!-- Label and input for name -->
+                <div class="form-group">
+                  <label for="name" class="control-label">
+                    <h4>Give this Survey a Keyword</h4>
+                  </label>
 
-      <!-- Label and input for name -->
-      <div class="form-group">
-        <label for="name" class="control-label">
-          <h4>Give this Survey a Keyword</h4>
-        </label>
+                  <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="">
+                </div>
 
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="">
-      </div>
+                <!-- Label and input for body -->
+                <div class="form-group">
+                  <label for="body" class="control-label">
+                    <h4>What question do you want to ask patrons?</h4>
+                  </label>
 
-      <!-- Label and input for body -->
-      <div class="form-group">
-        <label for="body" class="control-label">
-          <h4>What question do you want to ask patrons?</h4>
-        </label>
-
-        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"></textarea>
-      </div>
-
-
-      <h4>Keep it simple. Give them two options to choose from.</h4>
-
-      <!-- Label and input for option_1 -->
-      <div class="form-group">
-        <label for="option_1" class="control-label">
-          <h3></h3>
-        </label>
-
-        <input type="text" id="option_1" name="option_1" placeholder="Option 1" class="form-control" value="">
-      </div>
-
-      <!-- Label and input for option_2 -->
-      <div class="form-group">
-        <label for="option_2" class="control-label">
-          <h3> </h3>
-        </label>
-
-        <input type="text" id="option_2" name="option_2" placeholder="Option 2" class="form-control" value="">
-      </div>
+                  <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"></textarea>
+                </div>
 
 
+                <h4>Keep it simple. Give them two options to choose from.</h4>
 
-      <!-- Label and input for restaurant_id -->
+                <!-- Label and input for option_1 -->
+                <div class="form-group">
+                  <label for="option_1" class="control-label">
+                    <h3></h3>
+                  </label>
 
-        <input type="hidden" name="restaurant_id" value="<%= @restaurant.id %>">
+                  <input type="text" id="option_1" name="option_1" placeholder="Option 1" class="form-control" value="">
+                </div>
 
-      <button class="btn btn-success">
-        Create Survey
-      </button>
+                <!-- Label and input for option_2 -->
+                <div class="form-group">
+                  <label for="option_2" class="control-label">
+                    <h3> </h3>
+                  </label>
 
-    </form>
-  </div>
-</div>
+                  <input type="text" id="option_2" name="option_2" placeholder="Option 2" class="form-control" value="">
+                </div>
 
-<br>
-<br>
 
-<div class="row">
-</div>
 
-<h3>Here are the Surveys You Have Live</h3>
+                <!-- Label and input for restaurant_id -->
 
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Active Survey Questions
-      </li>
+                  <input type="hidden" name="restaurant_id" value="<%= @restaurant.id %>">
 
-      <% @restaurant.questions.each do |question| %>
-        <li class="list-group-item">
-          <a href="/questions/<%= question.id %>">
-            <%= question.body %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/questions/<%= question.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/questions/<%= question.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_question/<%= question.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
+                <button class="btn btn-success">
+                  Create Survey
+                </button>
+
+              </form>
+            </div>
           </div>
-        </li>
-      <% end %>
+
+        </div>
+        <div class="col-sm-offset-0 col-sm-5">
+          <h3>Here are the Surveys You Have Live</h3>
+
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-info">
+                  Active Survey Questions
+                </li>
+
+                <% @restaurant.questions.each do |question| %>
+                  <li class="list-group-item">
+                    <a href="/questions/<%= question.id %>">
+                      <%= question.body %>
+                    </a>
+                    <div class="btn-group btn-group-xs pull-right">
+                      <a href="/questions/<%= question.id %>" class="btn btn-primary">
+                        <i class="fa fa-search-plus"></i>
+                      </a>
+                      <a href="/questions/<%= question.id %>/edit" class="btn btn-warning">
+                        <i class="fa fa-edit"></i>
+                      </a>
+                      <a href="/delete_question/<%= question.id %>" class="btn btn-danger" rel="nofollow">
+                        <i class="fa fa-trash-o"></i>
+                      </a>
+                    </div>
+                  </li>
+                <% end %>
 
 
-    </ul>
-  </div>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+    </div>
 </div>
+
+
+<br>
+<br>
+
+<div class="row">
+</div>
+
 
 
 
@@ -140,5 +150,7 @@
     </div>
   </div>
 </div>
+
+<br>
 
 <!-- A Restaurant has many questions -->

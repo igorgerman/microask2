@@ -1,13 +1,20 @@
 <div class="jumbotron">
 
   <h1>Nice choice.</h1>
-  <p>Complete any one of the surveys below.</p>
+  <p>Complete any one of <%=@restaurant.name%>'s surveys below.</p>
 
 </div>
 
+<%if @restaurant.user.id == current_user.id %>
+Look's like you're the boss here. <a href = "/restaurants/<%=@restaurant.id%>">Edit this page</a>
+<%end%>
 <br>
 
+<div>
 
+</div>
+
+<hr>
 
 <% @restaurant.questions.each do |survey|%>
 
@@ -23,15 +30,15 @@
       <div class="panel-body">
 
 
-          <form action = "/create_response" method = "post">
+        <form action = "/create_response" method = "post">
 
 
-            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-            <!-- Label and input for user_id -->
-            <input type="hidden" name="user_id" value="<%= current_user.id %>">
+          <!-- Label and input for user_id -->
+          <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
-              <input type="hidden" name="question_id" value="<%= survey.id %>">
+          <input type="hidden" name="question_id" value="<%= survey.id %>">
 
           <div class="radio">
             <label>
@@ -49,13 +56,16 @@
           </div>
 
 
+          <button class="btn btn-success">
+            Submit My Response
+          </button>
 
 
 
-<button class="btn btn-success">
-Submit My Response
-</button>
-
-</form>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%end%>
