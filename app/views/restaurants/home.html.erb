@@ -1,9 +1,26 @@
-<p> Bored in line? Earn some money back on your order. Select your restaurant </p>
+
+<div class="jumbotron">
+  <h1>You Look Bored.</h1>
+  <p>Make the most of your time in line. Fill out a short survey and get cash off your order. </p>
+  <small>Pick the restaurant that you're in  below.</small>
+</div>
+
 
 <% @restaurants.each do |restaurant| %>
 
-<a class= "btn btn-primary btn-lg" href="/restaurants/<%= restaurant.id %>/survey">
+<div class="container" style="text-align:center">
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-4">
+          <a class= "btn btn-primary btn-lg" style = "width:500px; text-align:center" href="/restaurants/<%= restaurant.id %>/survey">
+            <h1> <%= restaurant.name %> </h1>
+          </a>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<!-- <a class= "btn btn-primary btn-lg" href="/restaurants/<%= restaurant.id %>/survey">
   <h1> <%= restaurant.name %> </h1>
-</a>
+</a> -->
 
 <%end%>

@@ -1,7 +1,64 @@
 <div class="page-header">
-  <h3>Question #<%= @question.id %></h3>
+  <h3>Survey: <%= @question.name %> <small>Response Summary</small></h3>
 </div>
 
+
+
+<!-- A Question has many responses -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Survey Responses
+      </li>
+
+      <% @question.responses.each do |response| %>
+        <li class="list-group-item">
+          <a href="/responses/<%= response.id %>">
+            <%= response.selection %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/responses/<%= response.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/responses/<%= response.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_response/<%= response.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <!-- <li class="list-group-item">
+        <form action="/create_response" method="post">
+
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <input type="hidden" name="question_id" value="<%= @question.id %>">
+
+      <div class="form-group">
+        <label for="selection" class="control-label">
+          Selection
+        </label>
+
+        <input type="text" id="selection" name="selection" placeholder="Selection" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Response
+      </button>
+    </form>
+      </li> -->
+    </ul>
+  </div>
+</div>
+
+<h4>Survey Info</h4>
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
@@ -39,62 +96,5 @@
         Delete
       </a>
     </div>
-  </div>
-</div>
-
-<!-- A Question has many responses -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Responses
-      </li>
-
-      <% @question.responses.each do |response| %>
-        <li class="list-group-item">
-          <a href="/responses/<%= response.id %>">
-            <%= response.user_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/responses/<%= response.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/responses/<%= response.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_response/<%= response.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
-
-      <li class="list-group-item">
-        <form action="/create_response" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
-
-      <!-- Label and input for question_id -->
-      <input type="hidden" name="question_id" value="<%= @question.id %>">
-
-      <!-- Label and input for selection -->
-      <div class="form-group">
-        <label for="selection" class="control-label">
-          Selection
-        </label>
-
-        <input type="text" id="selection" name="selection" placeholder="Selection" class="form-control" value="">
-      </div>
-
-      <button class="btn btn-block btn-success">
-        Create Response
-      </button>
-    </form>
-      </li>
-    </ul>
   </div>
 </div>
