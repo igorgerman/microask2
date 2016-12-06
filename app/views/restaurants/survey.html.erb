@@ -1,4 +1,9 @@
-Earn some cash by completing this survey.
+<div class="jumbotron">
+
+  <h1>Nice choice.</h1>
+  <p>Complete any one of the surveys below.</p>
+
+</div>
 
 <br>
 
@@ -6,35 +11,49 @@ Earn some cash by completing this survey.
 
 <% @restaurant.questions.each do |survey|%>
 
-<%= survey.body %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= survey.body %>
+        </h3>
+      </div>
 
-<form action = "/create_response" method = "post">
-
-
-  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-  <!-- Label and input for user_id -->
-  <input type="hidden" name="user_id" value="<%= current_user.id %>">
-
-    <input type="hidden" name="question_id" value="<%= survey.id %>">
-
-<div class="radio">
-  <label>
-    <input type="radio" name="selection" id="selection" value="<%= survey.option_1 %>">
-    <%= survey.option_1 %>
-  </label>
-</div>
+      <div class="panel-body">
 
 
-<div class="radio">
-  <label>
-    <input type="radio" name="selection" id="selection" value="<%= survey.option_2 %>" >
-    <%= survey.option_2 %>
-  </label>
-</div>
+          <form action = "/create_response" method = "post">
+
+
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+            <!-- Label and input for user_id -->
+            <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+              <input type="hidden" name="question_id" value="<%= survey.id %>">
+
+          <div class="radio">
+            <label>
+              <input type="radio" name="selection" id="selection" value="<%= survey.option_1 %>">
+              <%= survey.option_1 %>
+            </label>
+          </div>
+
+
+          <div class="radio">
+            <label>
+              <input type="radio" name="selection" id="selection" value="<%= survey.option_2 %>" >
+              <%= survey.option_2 %>
+            </label>
+          </div>
+
+
+
+
 
 <button class="btn btn-success">
-Submit that Ish
+Submit My Response
 </button>
 
 </form>
