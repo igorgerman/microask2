@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h2>Get information from your patrons. Ask them a question while they wait in line</h2>
+  <h2>Get information from your patrons. Ask them a question while they wait in line.</h2>
 </div>
 
 <div class="row">
@@ -65,9 +65,9 @@
           Restaurant
         </label>
 
-        <%= select_tag(:restaurant_id, options_from_collection_for_select(Restaurant.all, :id, :name, @question.restaurant_id), :class => "form-control") %>
+        <%= select_tag(:restaurant_id, options_from_collection_for_select(@restaurants, :id, :name, @question.restaurant_id), :class => "form-control") %>
       </div>
-
+        <p> Or, <a href = "/restaurants/new"> add a restaurant </a></p>
       <button class="btn btn-success">
         Create Survey
       </button>
@@ -76,3 +76,5 @@
     </form>
   </div>
 </div>
+
+<br>

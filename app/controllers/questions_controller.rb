@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-
+    @restaurants = current_user.restaurants
     render("questions/new.html.erb")
   end
 
