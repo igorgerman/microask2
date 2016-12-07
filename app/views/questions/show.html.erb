@@ -13,6 +13,9 @@
         Survey Responses
       </li>
 
+      <% @choice1 = 0 %>
+      <% @choice2 = 0 %>
+
       <% @question.responses.each do |response| %>
         <li class="list-group-item">
           <a href="/responses/<%= response.id %>">
@@ -30,7 +33,17 @@
             </a>
           </div>
         </li>
+
+        <% if response.selection == @question.option_1 %>
+        <% @choice1 = @choice1 + 1 %>
+        <% else %>
+        <% @choice2 = @choice2 + 1 %>
+
+        <%end%>
+
       <% end %>
+
+<%= @choice1 %>
 
       <!-- <li class="list-group-item">
         <form action="/create_response" method="post">
