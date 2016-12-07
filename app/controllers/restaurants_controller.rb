@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
   def index
     @q = Restaurant.ransack(params[:q])
-    @restaurants = @q.result(:distinct => true).includes(:user, :questions).page(params[:page]).per(10)
+    @restaurants = @q.result(:distinct => true).includes(:user, :questions).page(params[:page])
 
     render("restaurants/index.html.erb")
   end
@@ -9,7 +9,7 @@ class RestaurantsController < ApplicationController
 def home
 
   @q = Restaurant.ransack(params[:q])
-  @restaurants = @q.result(:distinct => true).includes(:user, :questions).page(params[:page]).per(10)
+  @restaurants = @q.result(:distinct => true).includes(:user, :questions).page(params[:page])
 
 end
 
@@ -19,7 +19,7 @@ def survey
 end
 
 def reward
-  
+
 end
 
   def show
