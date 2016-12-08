@@ -10,6 +10,19 @@ class QuestionsController < ApplicationController
     @response = Response.new
     @question = Question.find(params[:id])
 
+    @choice1 = 0
+    @choice2 = 0
+
+    @question.responses.each do |response|
+
+       if response.selection == @question.option_1
+       @choice1 = @choice1 + 1
+       else
+      @choice2 = @choice2 + 1
+
+      end
+    end
+
     render("questions/show.html.erb")
   end
 
