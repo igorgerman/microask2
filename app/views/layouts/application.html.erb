@@ -35,15 +35,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="/" class="navbar-brand">MicroAsk</a>
+        <a href="/" class="navbar-brand"><i class="fa fa-check-square-o"></i>MicroAsk</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/">Browse Discounts</a></li>
-          <li><a href="/questions">My Surveys</a></li>
-          <li><a href="/restaurants">My Restaurants</a></li>
+          <li><a href="/"><i class="fa fa-search"></i> Browse Discounts</a></li>
+          <li><a href="/questions"><i class="fa fa-list-ul"></i> My Surveys</a></li>
+          <li><a href="/restaurants"> <i class="fa fa-cutlery"></i> My Restaurants</a></li>
 
           <!-- <li><a href="/users">Users</a></li> -->
           <!-- <li><a href="/rails/info">Sitemap</a></li> -->
@@ -53,18 +53,21 @@
           <% if current_user.present? %>
             <li>
               <a href="/users/edit">
+                 <i class="fa fa-fw fa-edit"></i>
                 <%= current_user.email %>
               </a>
             </li>
 
             <li>
               <a href="/users/sign_out" data-method="delete" rel="nofollow">
+                <i class="fa fa-fw fa-sign-out"></i>
                 Sign Out
               </a>
             </li>
           <% else %>
             <li>
               <a href="/users/sign_up">
+                <i class="fa fa-fw fa-sign-up"></i>
                 Sign Up
               </a>
             </li>
